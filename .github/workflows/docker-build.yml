@@ -15,7 +15,7 @@ jobs:
     permissions:
       contents: read
       packages: write
-      security-events: write
+      #security-events: write
 
     steps:
       - name: Checkout repository
@@ -49,15 +49,22 @@ jobs:
           tags: local-test-image:latest
           cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}:buildcache
 
+      - name: Install Trivy
+        run: |
+          sudo apt-get install wget apt-transport-https gnupg -y
+          wget -qO - https://aquasecurity.github.io/trivy-repo/deb/public.key | gpg --dearmor | sudo tee /usr/share/keyrings/trivy.gpg > /dev/null
+          echo "deb [signed-by=/usr/share/keyrings/trivy.gpg] https://aquasecurity.github.io/trivy-repo/deb generic main" | sudo tee /etc/apt/sources.list.d/trivy.list
+          sudo apt-get update
+          sudo apt-get install trivy -y
+
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@v0.31.0
-        with:
-          image-ref: 'local-test-image:latest'
-          format: 'table'
-          exit-code: '1'
-          ignore-unfixed: true
-          vuln-type: 'os,library'
-          severity: 'CRITICAL,HIGH'
+        run: |
+          trivy image \
+            --exit-code 1 \
+            --ignore-unfixed \
+            --vuln-type os,library \
+            --severity CRITICAL,HIGH \
+            local-test-image:latest
 
       - name: Extract metadata
         id: meta
