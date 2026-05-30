@@ -1,4 +1,4 @@
-##ZADANIE 2
+## ZADANIE 2
 Kacper Kozlinski
 101603
 
@@ -53,8 +53,16 @@ Obraz dostepny jest pod adresem
 Link do dockerhuba
 https://hub.docker.com/r/pejas/zad2-cache
 
-Dla potwierdzenia jeszcze dolaczam screeny z powyzszego adressu, zakladki Actions oraz z dockerHuba "adress.png", "actions.png" oraz "dockerhub.png" dodatkowo ponizej wstawiam logi z pozytywnego "Run Trivy vulnerability scanner"
+Dla potwierdzenia jeszcze dolaczam screeny z powyzszego adressu, zakladki Actions oraz z dockerHuba "adress.png", "actions.png" oraz "dockerhub.png", znajduja sie one w folderze screenshots/ dodatkowo ponizej wstawiam logi z pozytywnego "Run Trivy vulnerability scanner"
 
+### GitHub Actions
+![Actions](screenshots/actions.png)
+
+### Obraz w ghcr.io
+![GHCR](screenshots/adress.png)
+
+### Cache w DockerHub
+![DockerHub](screenshots/dockerhub.png)
 
 <details>
 <summary>Run Trivy vulnerability scanner</summary>
