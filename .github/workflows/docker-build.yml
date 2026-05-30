@@ -50,7 +50,7 @@ jobs:
           cache-from: type=registry,ref=${{ env.CACHE_IMAGE }}:buildcache
 
       - name: Run Trivy vulnerability scanner
-        uses: aquasecurity/trivy-action@0.30.0
+        uses: aquasecurity/trivy-action@v0.30.0
         with:
           image-ref: 'local-test-image:latest'
           format: 'table'
